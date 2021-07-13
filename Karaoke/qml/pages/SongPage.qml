@@ -15,7 +15,7 @@ Page {
             width:parent.width
             Audio{
                 id:player
-                source: /*"/home/defaultuser/karaoke/base-all.json"+song*/;//;
+                source: "/home/defaultuser/karaoke/"+songList;
             }
             ProgressBar{
                 id:pgb

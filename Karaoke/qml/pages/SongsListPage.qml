@@ -23,6 +23,11 @@ Page {
                 }
                 text: model.song
             }
+            Component{
+                id:songPageView
+                SongPage{}
+            }
+
             onClicked:{
                 songList.setKey(model.key);
                 //topsongList.readList(" ");

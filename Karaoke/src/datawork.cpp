@@ -94,6 +94,7 @@ void DataWork::storeData(QList<Song> &songs){
     DWPrivate::createDataPath();
     QFile dataFile(DWPrivate::formDataFilePath());
     dataFile.open(QFile::WriteOnly);
+    if(dataFile.isOpen()) qDebug() <<"dadadadadadad";
     dataFile.write(jsonDocument.toJson(QJsonDocument::Indented));
     dataFile.close();
 }
