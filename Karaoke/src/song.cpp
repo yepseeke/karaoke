@@ -1,9 +1,10 @@
 #include "song.h"
 
-Song::Song(QString singer, QString song, QString language, qint8 id)
+Song::Song(QString language, QString singer, QString song, qint64 id, qint64 totalview)
 {
-    this->country = language;
-    this->band = singer;
-    this->songname = song;
-    this->totalview = id;
+    this->language = language;
+    this->singer = singer;
+    this->song = song;
+    this->id = id;
+    this->totalview = totalview;
 }

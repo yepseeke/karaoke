@@ -29,7 +29,7 @@ Page {
             }
             onClicked:{
                 bands.setKey(model.element);
-                songList.getSongList(language.getKey(), bands.getKey());
+                songList.getSongList("/home/defaultuser/karaoke/base-all.json", language.getKey(), bands.getKey());
                 pageStack.push(Qt.resolvedUrl("SongsListPage.qml"));
             }
         }

@@ -5,6 +5,7 @@ import ".."
 
 Page {
     id: page
+
     SilicaListView {
         anchors.fill: parent
         model: topsongList
@@ -20,11 +21,12 @@ Page {
                     leftMargin: Theme.horizontalPageMargin
                     rightMargin: Theme.horizontalPageMargin
                 }
-                text: model.band + " " + model.songname + " " + model.totalview
+                text: model.singer + " " + model.song + " " + model.totalview
             }
-//            onClicked:{
-
-//            }
+            onClicked:{
+                topsongList.findaddelemandplusplusList(model.language, model.singer, model.song, model.id);
+                pageStack.push(Qt.resolvedUrl("SongPage.qml"));
+            }
         }
         VerticalScrollDecorator {}
     }

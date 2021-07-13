@@ -5,11 +5,12 @@
 
 struct Song
 {
-    Song(QString country, QString band, QString songname, qint8 totalview);
-    QString country;
-    QString band;
-    QString songname;
-    qint8 totalview;
+    Song(QString language, QString singer, QString song, qint64 id, qint64 totalview);
+    QString language;
+    QString singer;
+    QString song;
+    qint64 id;
+    qint64 totalview;
 };
 
 #endif

@@ -11,7 +11,7 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <source>My Cover</source>
+        <source>Karaoke</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -19,20 +19,6 @@
     <name>LanguagesListPage</name>
     <message>
         <source>Languages</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SongPage</name>
-    <message>
-        <source>Song</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SongsListPage</name>
-    <message>
-        <source>Songs</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -10,55 +10,65 @@
 #include "song.h"
 
 namespace DWPrivate {
+QString formDataFilePath();
+void createDataPath();
 Song convertJsonObjectToSong(QJsonObject &jsonObject);
 QJsonObject convertSongToJsonObject(Song &song);
 };
 
+QString DWPrivate::formDataFilePath() {
+    QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+    return dataDir.absoluteFilePath(QStringLiteral("data.json"));
+}
+
+void DWPrivate::createDataPath() {
+    auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QDir directoryCreator;
+    directoryCreator.mkpath(path);
+}
+
 QJsonObject DWPrivate::convertSongToJsonObject(Song &song){
     QJsonObject songObject;
-    songObject["singer"] = song.band;
-    songObject["song"] = song.songname;
-    songObject["language"] = song.country;
+    songObject["singer"] = song.singer;
+    songObject["song"] = song.song;
+    songObject["language"] = song.language;
+    songObject["id"] = song.id;
+    songObject["totalview"] = song.totalview;
     return songObject;
 }
 
 Song DWPrivate::convertJsonObjectToSong(QJsonObject &jsonObject) {
     return Song(
+                  jsonObject["language"].toString(),
                 jsonObject["singer"].toString(),
-                jsonObject["song"].toString(),
-                jsonObject["language"].toString(),
-                jsonObject["id"].toInt()
+            jsonObject["song"].toString(),
+            jsonObject["id"].toInt(),
+            jsonObject["totalview"].toInt()
             );
 }
 
-QList<Song> DataWork::readData() {
-    QList<Song> songs /*= {Song("first1","first2","first3",10),Song("second1","second2","second3",2),
-                         Song("three1","three2","three3",3),Song("first1","first222","first3",4),
-                         Song("first1","first222","first4",5)}*/;
-
-    //QFile dataFile("");
-    QFile dataFile("/home/defaultuser/karaoke/base-all.json");
+QList<Song> DataWork::readData(QString path) {
+//    QList<Song> songs = {Song("first1","first2","first3",10,0),Song("second1","second2","second3",2,0),
+//                         Song("three1","three2","three3",3,0),Song("first1","first222","first3",4,0),
+//                         Song("first1","first222","first4",5,0)};
+    QList<Song> songs;
+    if(path == " ") path = DWPrivate::formDataFilePath();
+    qDebug() << "WAY" << path;
+    QFile dataFile(path);
     if(!dataFile.exists()) {
+        qDebug() << "WAY" << path;
         // Data does not exists
-        qDebug() << "Data file path: "<<QDir::currentPath();
         return songs;
-    }
-    if(dataFile.exists()) {
-        qDebug() << "Data exist "<<QDir::currentPath();
     }
     if(!dataFile.open(QFile::ReadOnly)) {
         // File could not be openned
-        qDebug() << "Data is open "<<QDir::currentPath();
         return songs;
     }
 
     auto rawData = dataFile.readAll();
-    qDebug() << rawData;
-    QJsonParseError error;
-    auto jsonDocument = QJsonDocument::fromJson(rawData, &error);
+    auto jsonDocument = QJsonDocument::fromJson(rawData);
     if(jsonDocument.isNull()) {
         // Data was not parsed
-        qDebug() << "Data was not parsed: "<< error.errorString();
         return songs;
     }
     if(!jsonDocument.isArray()) {
@@ -81,7 +91,8 @@ void DataWork::storeData(QList<Song> &songs){
     }
     QJsonDocument jsonDocument;
     jsonDocument.setArray(jsonArray);
-    QFile dataFile("/home/defaultuser/karaoke/base.json");
+    DWPrivate::createDataPath();
+    QFile dataFile(DWPrivate::formDataFilePath());
     dataFile.open(QFile::WriteOnly);
     dataFile.write(jsonDocument.toJson(QJsonDocument::Indented));
     dataFile.close();

@@ -11,28 +11,14 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <source>My Cover</source>
-        <translation>Mein Cover</translation>
+        <source>Karaoke</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>LanguagesListPage</name>
     <message>
         <source>Languages</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SongPage</name>
-    <message>
-        <source>Song</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SongsListPage</name>
-    <message>
-        <source>Songs</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

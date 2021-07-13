@@ -16,13 +16,14 @@ CONFIG += sailfishapp
 
 SOURCES += src/Karaoke.cpp \
     src/datawork.cpp \
-    src/filter.cpp \
+    src/filtr.cpp \
+    src/line.cpp \
     src/song.cpp \
-    src/songlist.cpp
+    src/songlist.cpp \
+    src/word.cpp
 
 DISTFILES += qml/Karaoke.qml \
     qml/cover/CoverPage.qml \
-    qml/pages/BandsListPage.qml \
     qml/pages/LanguagesListPage.qml \
     qml/pages/SongPage.qml \
     qml/pages/SongsListPage.qml \
@@ -48,6 +49,8 @@ TRANSLATIONS += translations/Karaoke-de.ts
 
 HEADERS += \
     src/datawork.h \
-    src/filter.h \
+    src/filtr.h \
+    src/line.h \
     src/song.h \
-    src/songlist.h
+    src/songlist.h \
+    src/word.h

@@ -27,9 +27,9 @@ Page {
                 BandsListPage{}
             }
             onClicked:{
-                pageStack.push(Qt.resolvedUrl("BandsListPage.qml"));
                 language.setKey(model.element);
-                bands.getBands(model.element);
+                bands.getBands("/home/defaultuser/karaoke/base-all.json", model.element);
+                pageStack.push(Qt.resolvedUrl("BandsListPage.qml"));
             }
         }
         Rectangle{
@@ -51,6 +51,8 @@ Page {
             MouseArea{
                 anchors.fill: parent
                 onClicked: {
+                    songList.setKey(model.key);
+                    topsongList.readList(" ");
                     topsongList.sortList();
                     pageStack.push(Qt.resolvedUrl("TopSongsPage.qml"));
                 }

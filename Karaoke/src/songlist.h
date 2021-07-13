@@ -13,23 +13,29 @@ public:
     explicit SongList(QObject *parent = nullptr);
 
     enum SongRoles {
-        CountryRole = Qt::UserRole + 1,
-        BandRole,
-        SongnameRole,
-        TotalviewRole
+        LanguageRole = Qt::UserRole + 1,
+        SingerRole,
+        SongRole,
+        IdRole,
+        TotalviewRole,
+        KeyRole
     };
     virtual int rowCount(const QModelIndex&) const { return m_songs.size(); }
     virtual QVariant data(const QModelIndex &index, int role) const;
     QHash<int, QByteArray> roleNames() const;
 
-    friend bool cmp(const Song& s1,const Song& s2);
+    Q_INVOKABLE void setKey(qint64 _key) {key = _key;}
+    Q_INVOKABLE qint64 getKey() {return key;}
+    friend bool cmp(Song s1, Song s2);
     Q_INVOKABLE void sortList();
-    Q_INVOKABLE void readList();
+    void addSong(QString language, QString singer, QString song, qint64 id, qint64 totalview );
+    Q_INVOKABLE void readList(QString);
     Q_INVOKABLE void storeList();
-    Q_INVOKABLE void getSongList(QString, QString);
-    Q_INVOKABLE void findelemList(QString, QString, QString, qint8);
+    Q_INVOKABLE void getSongList(QString, QString, QString);
+    Q_INVOKABLE void findaddelemandplusplusList(QString language, QString singer, QString song, qint64 id);
 private:
     QList<Song> m_songs;
+    qint64 key;
 };
 
 #endif // SONGLIST_H

@@ -2,11 +2,13 @@
 #define DATAWORK_H
 
 #include <QList>
+#include <QMap>
 #include <QString>
 #include "song.h"
 
 namespace DataWork {
-    QList<Song> readData();
+    QList<Song> readData(QString);
+    //QList<
     void storeData(QList<Song> &songs);
 };
 

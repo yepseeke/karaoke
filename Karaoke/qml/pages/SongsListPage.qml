@@ -10,7 +10,7 @@ Page {
         anchors.fill: parent
         model: songList
         header: PageHeader {
-            title: qsTr("Songs")
+            title: qsTr(bands.getKey())
         }
         delegate: BackgroundItem {
             Label {
@@ -21,10 +21,13 @@ Page {
                     leftMargin: Theme.horizontalPageMargin
                     rightMargin: Theme.horizontalPageMargin
                 }
-                text: model.band + " " + model.songname
+                text: model.song
             }
             onClicked:{
-                //topsongList.findelemList(model.band, model.songname, model.country, model.totalview)
+                songList.setKey(model.key);
+                topsongList.readList(" ");
+                topsongList.findaddelemandplusplusList(model.language, model.singer, model.song, model.id);
+                topsongList.sortList();
                 pageStack.push(Qt.resolvedUrl("SongPage.qml"));
             }
         }

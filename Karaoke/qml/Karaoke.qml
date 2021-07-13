@@ -14,12 +14,13 @@ ApplicationWindow
     SongList {
         id: topsongList
     }
-    Filter{
+    Filtr{
         id: language
     }
-    Filter{
+    Filtr{
         id:bands
     }
-    Component.onCompleted: {language.getLanguages(); topsongList.readList();}
+
+    Component.onCompleted: {language.getLanguages("/home/defaultuser/karaoke/base-all.json");}
     Component.onDestruction: {topsongList.storeList();}
 }

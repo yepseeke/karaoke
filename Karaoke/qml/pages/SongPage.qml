@@ -1,23 +1,21 @@
 import QtQuick 2.0
 import QtMultimedia 5.6
 import Sailfish.Silica 1.0
+import Karaoke 1.0
 import ".."
 
 Page {
     id: page
 
-    SilicaListView {
+    SilicaFlickable {
         anchors.fill: parent
-        header: PageHeader {
-            title: qsTr("Song")
-        }
         Item{
             id: playerItem
             y:150
             width:parent.width
             Audio{
                 id:player
-                source: ;//;
+                source: /*"/home/defaultuser/karaoke/base-all.json"+song*/;//;
             }
             ProgressBar{
                 id:pgb
@@ -55,7 +53,7 @@ Page {
                     running: page.status === PageStatus.Active
                     repeat: true
                     onTriggered: {
-                        counterLabel.counter = counterLabel.counter + 1
+                        counterLabel.counter = counterLabel.counter + 0.01
                     }
                 }
             }

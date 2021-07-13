@@ -2,21 +2,21 @@
 #include <QVariant>
 #include <QDebug>
 #include "datawork.h"
-#include "filter.h"
+#include "filtr.h"
 
-Filter::Filter(QObject* parent) : QAbstractListModel(parent), m_elements()
+Filtr::Filtr(QObject* parent) : QAbstractListModel(parent), m_elements()
 {
 
 }
 
-QHash<int, QByteArray> Filter::roleNames() const {
+QHash<int, QByteArray> Filtr::roleNames() const {
     QHash<int, QByteArray> roles;
     roles[ElemRole] = "element";
     roles[KeyRole] = "key";
     return roles;
 }
 
-QVariant Filter::data(const QModelIndex &index, int role) const {
+QVariant Filtr::data(const QModelIndex &index, int role) const {
     if(!index.isValid())
         return QVariant();
     switch(role) {
@@ -28,22 +28,22 @@ QVariant Filter::data(const QModelIndex &index, int role) const {
         return QVariant();
     }
 }
-void Filter::getLanguages() {
-    QList<Song> cur = DataWork::readData();
+void Filtr::getLanguages(QString path) {
+    QList<Song> cur = DataWork::readData(path);
     beginResetModel();
     for (auto it = cur.begin(); it != cur.end(); ++it)
-        m_elements.append(it->country);
+        m_elements.append(it->language);
     m_elements.removeDuplicates();
     endResetModel();
 }
 
-void Filter::getBands(QString language){
-    QList<Song> cur = DataWork::readData();
+void Filtr::getBands(QString path, QString language){
+    QList<Song> cur = DataWork::readData(path);
     beginResetModel();
     m_elements.clear();
     for (auto it = cur.begin(); it != cur.end(); ++it)
-        if(it->country==language)
-            m_elements.append(it->band);
+        if(it->language==language)
+            m_elements.append(it->singer);
     m_elements.removeDuplicates();
     endResetModel();
 }
