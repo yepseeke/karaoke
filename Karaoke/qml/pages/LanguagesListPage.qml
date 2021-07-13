@@ -51,8 +51,8 @@ Page {
             MouseArea{
                 anchors.fill: parent
                 onClicked: {
-                    songList.setKey(model.key);
-                    topsongList.readList(" ");
+                    //songList.setKey(model.key);
+                    //topsongList.readList(" ");
                     topsongList.sortList();
                     pageStack.push(Qt.resolvedUrl("TopSongsPage.qml"));
                 }

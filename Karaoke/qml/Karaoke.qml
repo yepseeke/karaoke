@@ -21,6 +21,6 @@ ApplicationWindow
         id:bands
     }
 
-    Component.onCompleted: {language.getLanguages("/home/defaultuser/karaoke/base-all.json");}
+    Component.onCompleted: {language.getLanguages("/home/defaultuser/karaoke/base-all.json"); songList.readList(" ");}
     Component.onDestruction: {topsongList.storeList();}
 }
