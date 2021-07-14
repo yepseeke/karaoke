@@ -26,6 +26,8 @@ public:
 
     Q_INVOKABLE void setKey(qint64 _key) {key = _key;}
     Q_INVOKABLE qint64 getKey() {return key;}
+    Q_INVOKABLE void setSing(QString cur) {sing = cur;}
+    Q_INVOKABLE QString getSing(QString cur) {return sing;}
     friend bool cmp(Song s1, Song s2);
     Q_INVOKABLE void sortList();
     void addSong(QString language, QString singer, QString song, qint64 id, qint64 totalview );
@@ -36,6 +38,7 @@ public:
 private:
     QList<Song> m_songs;
     qint64 key;
+    QString sing;
 };
 
 #endif // SONGLIST_H

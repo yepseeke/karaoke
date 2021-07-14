@@ -24,6 +24,8 @@ Page {
                 text: model.singer + " " + model.song + " " + model.totalview
             }
             onClicked:{
+                songList.setKey(model.id);
+                songList.setSing(model.song);
                 topsongList.findaddelemandplusplusList(model.language, model.singer, model.song, model.id);
                 pageStack.push(Qt.resolvedUrl("SongPage.qml"));
             }

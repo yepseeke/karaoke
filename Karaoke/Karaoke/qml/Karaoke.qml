@@ -20,7 +20,11 @@ ApplicationWindow
     Filtr{
         id:bands
     }
+    Filtr{
+        id:txt
+    }
 
-    Component.onCompleted: {language.getLanguages("/home/defaultuser/karaoke/base-all.json"); songList.readList(" ");}
+    Component.onCompleted: {language.getLanguages("/home/defaultuser/karaoke/base-all.json"); songList.readList(" ");
+                                topsongList.readList(" "); txt.readText("/home/defaultuser/karaoke/1.txt");}
     Component.onDestruction: {topsongList.storeList();}
 }

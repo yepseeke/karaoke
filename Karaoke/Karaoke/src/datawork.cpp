@@ -48,15 +48,10 @@ Song DWPrivate::convertJsonObjectToSong(QJsonObject &jsonObject) {
 }
 
 QList<Song> DataWork::readData(QString path) {
-//    QList<Song> songs = {Song("first1","first2","first3",10,0),Song("second1","second2","second3",2,0),
-//                         Song("three1","three2","three3",3,0),Song("first1","first222","first3",4,0),
-//                         Song("first1","first222","first4",5,0)};
     QList<Song> songs;
     if(path == " ") path = DWPrivate::formDataFilePath();
-    qDebug() << "WAY" << path;
     QFile dataFile(path);
     if(!dataFile.exists()) {
-        qDebug() << "WAY" << path;
         // Data does not exists
         return songs;
     }
@@ -94,7 +89,6 @@ void DataWork::storeData(QList<Song> &songs){
     DWPrivate::createDataPath();
     QFile dataFile(DWPrivate::formDataFilePath());
     dataFile.open(QFile::WriteOnly);
-    if(dataFile.isOpen()) qDebug() <<"dadadadadadad";
     dataFile.write(jsonDocument.toJson(QJsonDocument::Indented));
     dataFile.close();
 }

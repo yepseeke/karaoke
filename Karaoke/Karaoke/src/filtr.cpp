@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <QVariant>
 #include <QDebug>
+#include <QFile>
 #include "datawork.h"
 #include "filtr.h"
 
@@ -48,3 +49,14 @@ void Filtr::getBands(QString path, QString language){
     endResetModel();
 }
 
+void Filtr::readText(QString path){
+    QFile file(path);
+    if ((file.exists())&&(file.open(QIODevice::ReadOnly)))
+    {
+        while(!file.atEnd())
+        {
+            m_elements.append(file.readLine());
+        }
+        file.close();
+    }
+}

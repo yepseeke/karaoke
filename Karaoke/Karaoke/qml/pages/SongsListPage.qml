@@ -29,8 +29,8 @@ Page {
             }
 
             onClicked:{
-                songList.setKey(model.key);
-                //topsongList.readList(" ");
+                songList.setKey(model.id);
+                songList.setSing(model.song);
                 topsongList.findaddelemandplusplusList(model.language, model.singer, model.song, model.id);
                 topsongList.sortList();
                 pageStack.push(Qt.resolvedUrl("SongPage.qml"));

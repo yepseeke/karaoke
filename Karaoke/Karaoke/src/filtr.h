@@ -25,6 +25,7 @@ public:
     Q_INVOKABLE QString getKey(){return key;}
     Q_INVOKABLE void getLanguages(QString);
     Q_INVOKABLE void getBands(QString, QString);
+    Q_INVOKABLE void readText(QString);
 private:
     QList<QString> m_elements;
     QString key;
